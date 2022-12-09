@@ -5,12 +5,12 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-@AllArgsConstructor
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@ToString
 @FieldDefaults(makeFinal = false,level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "cars")
