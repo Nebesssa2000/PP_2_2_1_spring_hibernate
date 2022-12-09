@@ -6,12 +6,8 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
-@ToString
-@FieldDefaults(makeFinal = false,level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "cars")
 public class Car {
