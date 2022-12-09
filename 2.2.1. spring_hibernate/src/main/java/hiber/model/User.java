@@ -9,6 +9,7 @@ public class User {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id")
    private Long id;
 
    @Column(name = "name")
@@ -19,6 +20,10 @@ public class User {
 
    @Column(name = "email")
    private String email;
+
+   @OneToOne
+   @JoinColumn(name = "cars_id")
+   private Car usercar;
 
    public User() {}
    
@@ -58,5 +63,13 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   public Car getUsercar() {
+      return usercar;
+   }
+
+   public void setUsercar(Car usercar) {
+      this.usercar = usercar;
    }
 }
