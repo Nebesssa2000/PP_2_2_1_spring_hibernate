@@ -17,20 +17,20 @@ public class User {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id")
-   private Long id;
+   Long id;
 
    @Column(name = "name")
-   private String firstName;
+   String firstName;
 
    @Column(name = "last_name")
-   private String lastName;
+   String lastName;
 
    @Column(name = "email")
-   private String email;
+   String email;
 
    @OneToOne(cascade = CascadeType.ALL, targetEntity = Car.class)
    @JoinColumn(name = "cars_id")
-   private Car usercar;
+   Car usercar;
 
    public User(String firstName, String lastName, String email) {
       this.firstName = firstName;

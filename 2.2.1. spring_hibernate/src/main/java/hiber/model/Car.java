@@ -15,16 +15,16 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
     @Column(name = "model")
-    private String model;
+    String model;
 
     @Column(name = "series")
-    private int series;
+    int series;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usercar")
-    private User user;
+    User user;
 
     public Car(String model, int series) {
         this.model = model;
@@ -33,9 +33,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "model='" + model + '\'' +
-                ", series=" + series +
-                '}';
+        return "" + model + " "+ series ;
     }
 }
