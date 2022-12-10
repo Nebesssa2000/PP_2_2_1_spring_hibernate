@@ -13,12 +13,20 @@ import javax.persistence.*;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "car_id")
-    Long id;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "model")
-    String model;
+    private String model;
 
     @Column(name = "series")
-    int series;
+    private int series;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usercar")
+    private User user;
+
+    public Car(String model, int series) {
+        this.model = model;
+        this.series = series;
+    }
 }
