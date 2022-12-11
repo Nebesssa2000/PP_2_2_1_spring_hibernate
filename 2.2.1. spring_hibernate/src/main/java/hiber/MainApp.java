@@ -30,7 +30,7 @@ public class MainApp {
           System.out.println("Car = " +user.getUsercar());
          System.out.println();
       }
-       userService.getUserByCar("Cadillac TX", 6);
+       userService.getUserByCar("Alpine A", 110);
        System.out.println();
 
       context.close();

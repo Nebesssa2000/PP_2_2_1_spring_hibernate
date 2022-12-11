@@ -28,7 +28,7 @@ public class User {
    @Column(name = "email")
    String email;
 
-   @OneToOne(cascade = CascadeType.ALL, targetEntity = Car.class)
+   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    @JoinColumn(name = "cars_id")
    Car usercar;
 
