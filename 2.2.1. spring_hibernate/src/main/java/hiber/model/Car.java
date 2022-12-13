@@ -2,11 +2,12 @@ package hiber.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.*;
 
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
@@ -23,7 +24,8 @@ public class Car {
     @Column(name = "series")
     int series;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usercar")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usercar", fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
     User user;
 
     public Car(String model, int series) {

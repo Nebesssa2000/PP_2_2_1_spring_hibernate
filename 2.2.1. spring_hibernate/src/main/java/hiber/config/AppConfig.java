@@ -2,6 +2,8 @@ package hiber.config;
 
 import hiber.model.Car;
 import hiber.model.User;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,15 +18,20 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "hiber")
 public class AppConfig {
 
+
+   Environment env;
+
    @Autowired
-   private Environment env;
+   public AppConfig(Environment env) {
+      this.env = env;
+   }
 
    @Bean
    public DataSource getDataSource() {
@@ -47,7 +54,6 @@ public class AppConfig {
 
       factoryBean.setHibernateProperties(props);
       factoryBean.setAnnotatedClasses(User.class, Car.class);
-//      factoryBean.setAnnotatedClasses(Car.class);
       return factoryBean;
    }
 

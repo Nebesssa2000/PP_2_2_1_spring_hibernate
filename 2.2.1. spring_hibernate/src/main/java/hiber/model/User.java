@@ -6,8 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
@@ -28,7 +27,7 @@ public class User {
    @Column(name = "email")
    String email;
 
-   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   @OneToOne(cascade = CascadeType.ALL)
    @JoinColumn(name = "cars_id")
    Car usercar;
 
