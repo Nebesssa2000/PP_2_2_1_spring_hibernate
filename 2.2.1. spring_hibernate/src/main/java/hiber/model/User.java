@@ -5,14 +5,16 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "users")
-public class User {
-
+public class User implements Serializable {
+   static long serialVersionUID = 1L;
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id")
@@ -27,15 +29,9 @@ public class User {
    @Column(name = "email")
    String email;
 
-   @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "cars_id")
+   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @PrimaryKeyJoinColumn
    Car usercar;
-
-   public User(String firstName, String lastName, String email) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.email = email;
-   }
 
    public User(String firstName, String lastName, String email, Car usercar) {
       this.firstName = firstName;

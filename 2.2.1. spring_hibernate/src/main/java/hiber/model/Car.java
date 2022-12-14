@@ -1,18 +1,22 @@
 package hiber.model;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "cars")
-public class Car {
+public class Car implements Serializable {
+    static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,7 +29,7 @@ public class Car {
     int series;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usercar", fetch = FetchType.LAZY)
-    @LazyToOne(LazyToOneOption.NO_PROXY)
+    @PrimaryKeyJoinColumn
     User user;
 
     public Car(String model, int series) {
