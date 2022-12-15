@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 @Setter
 @Getter
+@ToString
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
@@ -17,7 +18,7 @@ public class User implements Serializable {
    static long serialVersionUID = 1L;
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "id")
+   @Column(name = "id", nullable = false)
    Long id;
 
    @Column(name = "name")
@@ -29,25 +30,10 @@ public class User implements Serializable {
    @Column(name = "email")
    String email;
 
-   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-   @PrimaryKeyJoinColumn
-   Car usercar;
-
-   public User(String firstName, String lastName, String email, Car usercar) {
+   public User(String firstName, String lastName, String email) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
-      this.usercar = usercar;
-   }
-
-   @Override
-   public String toString() {
-      return "User{" +
-              "id=" + id +
-              ", firstName='" + firstName + '\'' +
-              ", lastName='" + lastName + '\'' +
-              ", email='" + email + '\'' +
-              ", usercar=" + usercar +
-              '}';
    }
 }
+
